@@ -1,41 +1,30 @@
-import React from 'react';
-// import {DndContext} from '@dnd-kit/core';
-// import {useDraggable} from '@dnd-kit/core';
-
-import Disc1 from './assets/1.png';
-import Disc2 from './assets/2.png';
-import Disc3 from './assets/3.png';
-import Disc4 from './assets/4.png';
-import Disc5 from './assets/5.png';
-import Disc6 from './assets/6.png';
+import { useDraggable } from '@dnd-kit/core';
+import { CSS } from '@dnd-kit/utilities';
 
 
-const discImages = {
-    1: Disc6,
-    2: Disc5,
-    3: Disc4,
-    4: Disc3,
-    5: Disc2,
-    6: Disc1,
+function Disc({ disc, isTopDisc }) {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: disc.id,
+    disabled: !isTopDisc,
+  });
+
+  const style = {
+    transform: CSS.Translate.toString(transform),
   };
 
-const Disc = ({ order, position }) => {
-
-
-    return (
-        // <DndContext>
-            <img
-                src={discImages[order]}
-                alt={`Disc ${order}`}
-                className="Disc"
-                data-position={position}
-            />
-    //   </DndContext>
-    );
-  };
+  return (
+    <img
+      src={disc.disc}
+      alt={"Disc"}
+      className={"discs"}
+      ref={setNodeRef}
+      style={style}
+      draggable={false}
+      {...listeners}
+      {...attributes} />
+  );
+}
 
 
 export default Disc;
-
-
 

@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+
 import './App.css'
 import Game from './Game'
 
@@ -6,6 +8,18 @@ function App() {
     <>
       <header>
         <h1>Towers of Hanoi</h1>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </header>
       <main>
         <Game />
@@ -17,4 +31,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

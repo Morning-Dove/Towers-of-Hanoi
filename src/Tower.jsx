@@ -1,21 +1,30 @@
-// import {DndContext} from '@dnd-kit/core';
-// import {useDroppable} from '@dnd-kit/core';
+import { useDroppable } from '@dnd-kit/core';
 
-import React from 'react';
 import Disc from './Disc';
+import styles from "./Tower.module.css"
 import Stand from './assets/stand.svg';
 
-const Tower = ({ discs }) => {
-    return (
-        // <DndContext>
-            <div className="Tower">
-                {discs.map((order, index) => (
-                <Disc key={index} order={order} position={index + 1}/>
-                ))}
-                <img src={Stand} alt="Stand" className="Stand"/>
-            </div>
-        // </DndContext>
-    );
+
+function Tower({ towerId, discs }) {
+  const { setNodeRef } = useDroppable({
+    id: towerId,
+  });
+
+  return (
+    <div>
+        <div className="Tower">
+            <section ref={setNodeRef} className={styles.tower}>
+                {/* <div className="AlignDiscs"> */}
+                    {discs.map((disc, i) => (
+                    <Disc key={i} disc={disc} isTopDisc={i === discs.length - 1} className={styles.discs} />
+                    ))}
+                {/* </div> */}
+                {/* <img src={Stand} alt="Stand" className="Stand" draggable={false}/> */}
+            </section>
+        </div>
+    </div>
+  );
 }
 
 export default Tower;
+
