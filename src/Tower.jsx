@@ -11,18 +11,11 @@ function Tower({ towerId, discs }) {
   });
 
   return (
-    <div>
-        <div className="Tower">
-            <section ref={setNodeRef} className={styles.tower}>
-                {/* <div className="AlignDiscs"> */}
-                    {discs.map((disc, i) => (
-                    <Disc key={i} disc={disc} isTopDisc={i === discs.length - 1} className={styles.discs} />
-                    ))}
-                {/* </div> */}
-                {/* <img src={Stand} alt="Stand" className="Stand" draggable={false}/> */}
-            </section>
-        </div>
-    </div>
+    <section ref={setNodeRef} className={styles.tower}>
+        {discs.map((disc, i) => (
+        <Disc key={i} disc={disc} isTopDisc={i === discs.length - 1} className={styles.discs} />
+        ))}
+    </section>
   );
 }
 
